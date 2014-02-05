@@ -6,10 +6,17 @@
     <script src = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyBMSCMW5nW7cbfG2GdK8e7ryiHgwpaOPMo&sensor=false'></script>
     <script>
       function plotmarkers(data) {
-
+        var place, time, type;
+        for (var i = 0; i < data.length; i++) {
+          place = data[i][2];
+          time = data[i][0];
+          type = datat[i][4];
+        }
       }
       window.onload = function() {
+        var mapoptions = {'mapTypeId': google.maps.MapTypeId.HYBRID, 'tilt': 0};
         var map = new google.maps.Map($('#map')[0], mapoptions);
+        google.maps.event.trigger(map, 'resize');
       };
     </script>
 		<title>Map Snow Days</title>
