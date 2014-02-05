@@ -5,12 +5,36 @@
     <script src = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyBMSCMW5nW7cbfG2GdK8e7ryiHgwpaOPMo&sensor=false'></script>
     <script>
       function plotmarkers(data) {
-        var place, time, type;
-        for (var i = 0; i < data.length; i++) {
-          place = data[i][2];
-          time = data[i][0];
-          type = datat[i][4];
-        }
+        $.ajax({
+          type: 'GET',
+          dataType: 'json',
+          url: 'https://maps.googleapis.com/maps/api/geocode/json?sensor=false&address=' + encodeURIComponent(data.school),
+          success: (function() {
+            return funtion(server_response) {
+              if (server_response.status == 'OK') {
+                var pinimage = new google.maps.MarkerImage(
+                  'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|' + colors[data.type],
+                  new google.maps.Size(21, 34),
+                  new google.maps.Point(0, 0),
+                  new google.maps.Point(10, 34));
+                );
+                var marker = new google.maps.Marker({
+                  'title': data.school,
+                  'position': new google.maps.LatLng(server_response.results[0].geometry.location.lat, server_response.results[0].geometry.location.lng),
+                  'icon': pinimage,
+                  'map': map
+                });
+              }
+            }
+          }())
+        });
+      }
+      var colors = {
+        'Public School': 'FF0000',
+        'Private School': '00FF00',
+        'College': '0000FF',
+        'Religious': 'FFFF00',
+        'Other': 'FFFFFF'
       }
       window.onload = function() {
         var mapoptions = {'mapTypeId': google.maps.MapTypeId.HYBRID, 'tilt': 0};
