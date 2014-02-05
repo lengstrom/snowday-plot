@@ -13,6 +13,7 @@
           success: (function() {
             return funtion(server_response) {
               if (server_response.status == 'OK') {
+                if (colors[data.type] == undefined) data.type = 'Other';
                 var pinimage = new google.maps.MarkerImage(
                   'http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|' + colors[data.type],
                   new google.maps.Size(21, 34),
@@ -36,7 +37,7 @@
         'College': '0000FF',
         'Religious': 'FFFF00',
         'Other': 'FFFFFF'
-      }
+      };
       window.onload = function() {
         var mapoptions = {'mapTypeId': google.maps.MapTypeId.HYBRID, 'tilt': 0};
         var map = new google.maps.Map($('#map')[0], mapoptions);
