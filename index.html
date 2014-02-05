@@ -1,17 +1,19 @@
 <html>
 	<head>
-		<script type='text/javascript' src = 'jquery.js'></script>
+    <script type='text/javascript' src = 'js/jquery.js'></script>
+    <script type='text/javascript' src = 'js/parse.js'></script>
     <script src = 'https://maps.googleapis.com/maps/api/js?key=AIzaSyBMSCMW5nW7cbfG2GdK8e7ryiHgwpaOPMo&sensor=false'></script>
     <script>
       function plotmarkers(data) {
 
       }
       window.onload = function() {
-        var map = new google.maps.Map($('#map-canvas')[0], mapoptions);
+        var map = new google.maps.Map($('#map')[0], mapoptions);
       };
     </script>
+		<title>Map Snow Days</title>
 	</head>
 	<body>
-    <div id = 'map'></div>
+		<div id = 'map'></div>
 	</body>
 </html>
