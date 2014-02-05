@@ -21,7 +21,7 @@ var req = http.request(options, function(res) {
 			completeRows.push(rows[row].split(','))
 		}
 		for (var i in completeRows) {
-			(function () {
+			(function() {
 				var j = i;
 				console.log('/maps/api/geocode/json?address=' + encodeURIComponent(completeRows[i][2]) + '%20MA&sensor=false');
 				var z = http.request({
@@ -29,14 +29,14 @@ var req = http.request(options, function(res) {
 					path: '/maps/api/geocode/json?address=' + encodeURIComponent(completeRows[i][2]) + '%20MA&sensor=false',
 					method: 'GET',
 				}, function(res) {
-					res.on('data', function(da){
+					res.on('data', function(da) {
 						try {
 							da = decoder.write(da)
 							da = JSON.parse(da);
 							jsonToWrite.push({
-								short_name:da['results'][0]['address_components'][0]['short_name'],
-								lat:da['results'][0]['geometry']['location']['lat'],
-								lng:da['results'][0]['geometry']['location']['lng']
+								short_name:da.results[0].address_components[0].short_name,
+								lat:da.results[0].geometry.location.lat,
+								lng:da.results[0].geometry.location.lng,
 							});
 						}
 						catch (err) {
